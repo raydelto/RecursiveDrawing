@@ -7,10 +7,10 @@
 
 Shape::Shape(float thickness, int color[3])
 {
-    this->thickness = thickness;
+    _thickness = thickness;
     for (int k = 0; k < 3; k++)
     {
-        this->color[k] = color[k];
+        _color[k] = color[k];
     }
 }
 
@@ -22,7 +22,7 @@ void Shape::setColor(int color[3])
 {
     for (int k = 0; k < 3; k++)
     {
-        this->color[k] = color[k];
+        _color[k] = color[k];
     }
 }
 
@@ -32,7 +32,7 @@ void Shape::setColor(int color[3])
  */
 void Shape::setThickness(float thickness)
 {
-    this->thickness = thickness;
+    _thickness = thickness;
 }
 
 /**
@@ -54,33 +54,33 @@ void Shape::draw(SimpleCanvas *canvas)
  */
 Point::Point(float thickness, int color[3], float ax, float ay) : Shape(thickness, color)
 {
-    this->ax = ax;
-    this->ay = ay;
+    _ax = ax;
+    _ay = ay;
 }
 
 void Point::setX(float ax)
 {
-    this->ax = ax;
+    _ax = ax;
 }
 
 void Point::setY(float ay)
 {
-    this->ay = ay;
+    _ay = ay;
 }
 
 float Point::getX()
 {
-    return ax;
+    return _ax;
 }
 
 float Point::getY()
 {
-    return ay;
+    return _ay;
 }
 
 void Point::draw(SimpleCanvas *canvas)
 {
-    canvas->fillCircle((int)ax, (int)ay, thickness, color[0], color[1], color[2]);
+    canvas->fillCircle((int)_ax, (int)_ay, _thickness, _color[0], _color[1], _color[2]);
 }
 
 //////////////////////////////////////////////////
@@ -95,8 +95,8 @@ void Point::draw(SimpleCanvas *canvas)
 LineSegment::LineSegment(float thickness, int color[3],
                          Point a, Point b) : Shape(thickness, color)
 {
-    this->a = a;
-    this->b = b;
+    _a = a;
+    _b = b;
 }
 
 /**
@@ -105,7 +105,7 @@ LineSegment::LineSegment(float thickness, int color[3],
  */
 void LineSegment::setA(Point a)
 {
-    this->a = a;
+    _a = a;
 }
 
 /**
@@ -114,7 +114,7 @@ void LineSegment::setA(Point a)
  */
 void LineSegment::setB(Point b)
 {
-    this->b = b;
+    _b = b;
 }
 
 /**
@@ -123,7 +123,7 @@ void LineSegment::setB(Point b)
  */
 Point LineSegment::getA()
 {
-    return a;
+    return _a;
 }
 
 /**
@@ -132,7 +132,7 @@ Point LineSegment::getA()
  */
 Point LineSegment::getB()
 {
-    return b;
+    return _b;
 }
 
 /**
@@ -142,9 +142,9 @@ Point LineSegment::getB()
  */
 Point LineSegment::getMidpoint()
 {
-    float mx = (a.getX() + b.getX()) / 2;
-    float my = (a.getY() + b.getY()) / 2;
-    return Point(thickness, color, mx, my);
+    float mx = (_a.getX() + _b.getX()) / 2;
+    float my = (_a.getY() + _b.getY()) / 2;
+    return Point(_thickness, _color, mx, my);
 }
 
 /**
@@ -154,8 +154,8 @@ Point LineSegment::getMidpoint()
  */
 float LineSegment::getLength()
 {
-    float diffx = a.getX() - b.getX();
-    float diffy = a.getY() - b.getY();
+    float diffx = _a.getX() - _b.getX();
+    float diffy = _a.getY() - _b.getY();
     return sqrt(diffx * diffx + diffy * diffy);
 }
 
@@ -165,7 +165,7 @@ float LineSegment::getLength()
  */
 void LineSegment::draw(SimpleCanvas *canvas)
 {
-    canvas->drawLine(a.getX(), a.getY(), b.getX(), b.getY(), thickness, color[0], color[1], color[2]);
+    canvas->drawLine(_a.getX(), _a.getY(), _b.getX(), _b.getY(), _thickness, _color[0], _color[1], _color[2]);
 }
 
 //////////////////////////////////////////////////
@@ -182,12 +182,12 @@ void LineSegment::draw(SimpleCanvas *canvas)
 Triangle::Triangle(float thickness, int color[3],
                    Point a, Point b, Point c) : Shape(thickness, color)
 {
-    this->a = a;
-    this->b = b;
-    this->c = c;
-    this->ab = LineSegment(thickness, color, a, b);
-    this->bc = LineSegment(thickness, color, b, c);
-    this->ac = LineSegment(thickness, color, a, c);
+    _a = a;
+    _b = b;
+    _c = c;
+    _ab = LineSegment(thickness, color, a, b);
+    _bc = LineSegment(thickness, color, b, c);
+    _ac = LineSegment(thickness, color, a, c);
 }
 
 /**
@@ -196,7 +196,7 @@ Triangle::Triangle(float thickness, int color[3],
  */
 void Triangle::draw(SimpleCanvas *canvas)
 {
-    this->ab.draw(canvas);
-    this->bc.draw(canvas);
-    this->ac.draw(canvas);
+    _ab.draw(canvas);
+    _bc.draw(canvas);
+    _ac.draw(canvas);
 }

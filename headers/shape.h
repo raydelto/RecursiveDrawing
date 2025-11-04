@@ -5,8 +5,8 @@
 class Shape
 {
 protected:
-    float thickness;
-    int color[3];
+    float _thickness;
+    int _color[3];
 
 public:
     /**
@@ -39,8 +39,8 @@ public:
 class Point : public Shape
 {
 private:
-    float ax;
-    float ay;
+    float _ax;
+    float _ay;
 
 public:
     /**
@@ -65,8 +65,8 @@ public:
 class LineSegment : public Shape
 {
 private:
-    Point a;
-    Point b;
+    Point _a;
+    Point _b;
 
 public:
     /**
@@ -133,8 +133,8 @@ class Triangle : public Shape
     friend class SierpinskiTriangle;
 
 protected:
-    Point a, b, c;
-    LineSegment ab, ac, bc;
+    Point _a, _b, _c;
+    LineSegment _ab, _ac, _bc;
 
 public:
     /**
@@ -152,7 +152,7 @@ public:
 class SierpinskiTriangle : public Triangle
 {
 private:
-    int maxDepth; // Maximum depth of recursion
+    int _maxDepth; // Maximum depth of recursion
     /**
      * A recursive helper method for drawing the Sierpinski triangle
      *
@@ -173,7 +173,7 @@ public:
      */
     SierpinskiTriangle(float thickness, int color[3], Point a, Point b, Point c, int maxDepth) : Triangle(thickness, color, a, b, c)
     {
-        this->maxDepth = maxDepth;
+        _maxDepth = maxDepth;
     };
 
     void draw(SimpleCanvas *canvas);

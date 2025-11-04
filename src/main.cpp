@@ -10,6 +10,7 @@ int main(int argc, char **argv)
     if (argc < 4)
     {
         std::cout << "Usage: ./main <resolution> <max depth> <output PNG file location>\n";
+        std::cout << "Example Usage: ./main 500 5 output.png" << std::endl;
         return EXIT_FAILURE;
     }
     int res = atoi(argv[1]);

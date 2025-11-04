@@ -11,7 +11,7 @@
 void SierpinskiTriangle::drawRec(SimpleCanvas *canvas, Triangle &tri, int depth)
 {
     tri.draw(canvas);
-    // TODO: Fill this in.  Make recursive calls to draw
+    // TODO: Fill this in.  Make recursive calls to drawRec
     // three smaller triangles
 }
 

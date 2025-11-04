@@ -40,3 +40,9 @@ This will generate a `150 x 150` pixels PNG image in a file named `test.png` wit
 ## Coding your Fractal Implementation
 
 Implement your fractal recursive drawing algorithm by writing an implementation for the `SierpinskiTriangle::drawRec` method located in `src/fractal.cpp`
+
+## Expected Output
+
+This is how the answer should look like:
+
+![Sierpinski Triangle](sierpinski.png)
